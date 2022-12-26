@@ -47,11 +47,11 @@ const createNewNote = asyncHandler(async (req, res) => {
   const duplicate = await Note.findOne({ user, title, text }).lean().exec();
 
   if (duplicate) {
-    return res.status(409).json({ message: "Duplicate username" });
+    return res.status(409).json({ message: "Duplicate note" });
   }
 
   // Create and store new note
-  const note = await User.create({ user, title, text });
+  const note = await Note.create({ user, title, text });
 
   if (note) {
     //created
